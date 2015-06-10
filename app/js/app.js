@@ -4,8 +4,6 @@ $(document).ready(function(){
 	user.connectedAs();
 	chat.loadFirst();
 	chat.setInterval(chat.refresh);
-	myAud=document.getElementById("notify");
-	myAud.play();
 });
 
 var interval;
