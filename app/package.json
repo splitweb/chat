@@ -1,0 +1,14 @@
+{
+	"name": "Split Chat",
+	"main": "index.html",
+	"description": "A Light weight desktop chat app",
+	"version": "0.1.0",
+	"window": {
+		"icon": "img/SplitChat.png",
+		"title": "SplitChat",
+		"toolbar": false,
+		"width": 805,
+		"height": 600,
+		"frame":false
+	}
+}

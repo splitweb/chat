@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MyChat</title>
+	<meta name="description" content="My description">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/base/base.css">
+	<link rel="stylesheet" type="text/css" href="css/grids/grids.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons/buttons-core.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons/buttons.css">
+	<link rel="stylesheet" type="text/css" href="css/forms/forms.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+</head>
+<body>
+	<div class="line header-bar" style="-webkit-app-region: drag">Split Chat</div>
+	<div class="grid-3_4">
+		<form id="chat" class="pinnackl-form">
+			<div id="messages" class="content line"></div>
+			<textarea id="message" class="input" require placeholder="Your text here ..."></textarea>
+			<button id="btn-send" class="pinnackl-button pinnackl-button-primary">Submit</button>
+		</form>
+		<div class="send-option noselect">
+			<input id="auto-send" type="checkbox" name="auto-send">
+			<label for="auto-send" class="auto-send-msg">Send message on enter</label>
+		</div>
+	</div>
+	<div class="grid-1_4 pinnackl-form right-panel">
+		<input id="pseudo" class="pinnackl-input" value="" require placeholder="Your pseudo">
+		<button id="btn-close" class="pinnackl-button pinnackl-button-error">Close</button>
+	</div>
+
+	<script src="js/libs/sophwork.js"></script>
+	<script src="js/libs/jquery-1.11.0.min.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>

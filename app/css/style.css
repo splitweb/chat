@@ -1,0 +1,133 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+html, body{
+	height: 100%;
+}
+
+body{
+	background: #272822;
+	box-sizing: border-box;
+	overflow: hidden;
+	float: left;
+}
+
+.header-bar{
+	height: 2em;
+	line-height: 2em;
+	text-align: center;
+	vertical-align: middle;
+	background-color: rgb(0, 120, 231);
+	color: #fff;
+	-webkit-box-shadow: 0 1px 2px 0 #000;
+	box-shadow: 0 1px 2px 0 #000;
+}
+
+.content{
+	min-height: 400px;
+	max-height: 400px;
+	width: 400px;
+	overflow-y: scroll;
+	background:#fff;
+	padding: 6px 6px;
+	box-sizing:border-box;
+	-webkit-box-shadow:inset 4px 4px 3px 0 #B9BDB6;
+	box-shadow:inset 4px 4px 3px 0 #B9BDB6;
+}
+
+.post{
+	position: relative;
+	color: #fff;
+	background: #3b3c3a;
+	margin-top: 3px;
+	padding: 2px;
+	width: 90%;
+	min-height: 60px !important;
+	clear: both;
+}
+.post:last-child{
+	margin-bottom: 6px;
+}
+
+
+.date{
+	font-size: .6em;
+	float: right;
+	position: absolute;
+	bottom: 2px;
+	right: 2px;
+
+}
+
+.pseudo{
+	color:steelblue;
+}
+.pseudo:after{
+	content: " dit ";
+}
+
+.msg-get{
+	float: left;
+}
+
+.msg-send{
+	float: right!important;
+	background: #455a64;
+}
+
+/*extend pinnackl css*/
+textarea{
+	border-radius: 0 0 4px 4px !important;
+	min-height: 35px !important;
+	max-height: 128px !important;
+	height: 35px;
+	width: 100%;
+	max-width: 100%;
+}
+
+#chat{
+	position: relative;
+}
+#btn-send{
+	position: absolute;
+	right: 0;
+}
+
+#btn-close{
+	position: absolute;
+	bottom: 2em;
+	right: 0;
+}
+
+.right-panel{
+	position: relative;
+	height: 100%;
+}
+
+#pseudo{
+	margin: .5em;
+}
+
+.send-option{
+	margin-left: 6px;
+}
+
+.auto-send-msg{
+	color: #eee;
+	font-style: italic;
+}
+
+.auto-send-msg:hover{
+	cursor: pointer;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

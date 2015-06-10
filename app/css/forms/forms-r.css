@@ -1,0 +1,64 @@
+@media only screen and (max-width : 480px) {
+    .pinnackl-form button[type="submit"] {
+        margin: 0.7em 0 0;
+    }
+
+    .pinnackl-form input:not([type]),
+    .pinnackl-form input[type="text"],
+    .pinnackl-form input[type="password"],
+    .pinnackl-form input[type="email"],
+    .pinnackl-form input[type="url"],
+    .pinnackl-form input[type="date"],
+    .pinnackl-form input[type="month"],
+    .pinnackl-form input[type="time"],
+    .pinnackl-form input[type="datetime"],
+    .pinnackl-form input[type="datetime-local"],
+    .pinnackl-form input[type="week"],
+    .pinnackl-form input[type="number"],
+    .pinnackl-form input[type="search"],
+    .pinnackl-form input[type="tel"],
+    .pinnackl-form input[type="color"],
+    .pinnackl-form label {
+        margin-bottom: 0.3em;
+        display: block;
+    }
+
+    .pinnackl-group input:not([type]),
+    .pinnackl-group input[type="text"],
+    .pinnackl-group input[type="password"],
+    .pinnackl-group input[type="email"],
+    .pinnackl-group input[type="url"],
+    .pinnackl-group input[type="date"],
+    .pinnackl-group input[type="month"],
+    .pinnackl-group input[type="time"],
+    .pinnackl-group input[type="datetime"],
+    .pinnackl-group input[type="datetime-local"],
+    .pinnackl-group input[type="week"],
+    .pinnackl-group input[type="number"],
+    .pinnackl-group input[type="search"],
+    .pinnackl-group input[type="tel"],
+    .pinnackl-group input[type="color"] {
+        margin-bottom: 0;
+    }
+
+    .pinnackl-form-aligned .pinnackl-control-group label {
+        margin-bottom: 0.3em;
+        text-align: left;
+        display: block;
+        width: 100%;
+    }
+
+    .pinnackl-form-aligned .pinnackl-controls {
+        margin: 1.5em 0 0 0;
+    }
+
+    /* NOTE: pinnackl-help-inline is deprecated. Use .pinnackl-form-message-inline instead. */
+    .pinnackl-form .pinnackl-help-inline,
+    .pinnackl-form-message-inline,
+    .pinnackl-form-message {
+        display: block;
+        font-size: 0.75em;
+        /* Increased bottom padding to make it group with its related input element. */
+        padding: 0.2em 0 0.8em;
+    }
+}

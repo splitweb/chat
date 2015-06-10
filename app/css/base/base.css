@@ -1,0 +1,47 @@
+/*csslint important:false*/
+
+/* ==========================================================================
+   pinnackl Base Extras
+   This is a fork from PureCSS
+   ========================================================================== */
+
+/**
+ * Extra rules that pinnackl adds on top of Normalize.css
+ */
+
+/**
+ * Always hide an element when it has the `hidden` HTML attribute.
+ */
+
+ html, body {
+ 	min-height: 100%;
+	width: 100%;	
+  margin: 0;
+ }
+ html{
+    position: relative;
+ }
+
+.hidden,
+[hidden] {
+    display: none !important;
+}
+
+/**
+ * Add this class to an image to make it fit within it's fluid parent wrapper while maintaining
+ * aspect ratio.
+ */
+.pinnackl-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.pinnackl-background-body {
+	background-color: #F8F8F8;
+	height: 100%;
+	width: 100%;
+}
+#content {
+  height: 90%;
+  background-color: white;
+}
