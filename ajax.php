@@ -37,7 +37,7 @@ function readMsg($start = 10, $limit = 0){
 function writeMsg(){
 	$date = date('Y-m-d H:i:s', strtotime("now"));
 	$message = "<div class='post grid-2_3 msg-get'><b class='date'>" . $date . "</b><i class='pseudo'>" . $_POST['write']['user'] . "</i> : ";
-	$message .= preg_replace("#\n#", " ", $_POST['write']['msg']);
+	$message .= "<p>" . preg_replace("#\n#", " ", $_POST['write']['msg']) . "</p>";
 	$message .= "</div></br>\n";
 	$f = fopen('db.txt', 'a+');
 	fwrite($f, $message);

@@ -40,7 +40,6 @@ body{
 .post{
 	position: relative;
 	color: #fff;
-	background: #3b3c3a;
 	margin-top: 3px;
 	padding: 2px;
 	width: 90%;
@@ -62,7 +61,8 @@ body{
 }
 
 .pseudo{
-	color:steelblue;
+	color: #1e90ff;
+	font-weight: bold;
 }
 .pseudo:after{
 	content: " dit ";
@@ -70,6 +70,7 @@ body{
 
 .msg-get{
 	float: left;
+	background: #607d8b;
 }
 
 .msg-send{
@@ -99,6 +100,11 @@ textarea{
 	position: absolute;
 	bottom: 2em;
 	right: 0;
+}
+#btn-minimize{
+	position: absolute;
+	bottom: 2em;
+	right: 70px;
 }
 
 .right-panel{
