@@ -12,6 +12,7 @@ body{
 	box-sizing: border-box;
 	overflow: hidden;
 	float: left;
+	color: #09c;
 }
 
 .header-bar{
@@ -106,6 +107,27 @@ textarea{
 	bottom: 2em;
 	right: 70px;
 }
+#btn-new-room{
+	position: absolute;
+	bottom: 4.5em;
+	right: 0px;
+	font-weight: bold;
+	color: #0077e7;
+}
+#btn-join-room{
+	position: absolute;
+	bottom: 4.5em;
+	right: 43px;
+	font-weight: bold;
+	color: #fff;
+}
+#btn-share-room{
+	position: absolute;
+	bottom: 4.5em;
+	right: 105px;
+	font-weight: bold;
+	color: #fff;
+}
 
 .right-panel{
 	position: relative;
@@ -136,4 +158,12 @@ textarea{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.invite{
+	padding: 1em;
+	color: #eee;
+	display: none;
+}
+#room-id{
 }

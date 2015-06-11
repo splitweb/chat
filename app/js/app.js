@@ -1,13 +1,23 @@
 $(document).ready(function(){
+	room.pastRoom();
 	chat.preventDefault($('#chat'));
 	chat.addLisnters();
 	user.connectedAs();
+	user.initSession();
 	chat.loadFirst();
-	chat.setInterval(chat.refresh);
+	intervalPost = chat.setInterval(chat.refresh);
+	autoSend = document.getElementById('auto-send').checked;
+	chat.notifyGrant();
 });
+/**
+ * debuging var
+ */
+var dev = true;
 
-var interval;
+var intervalPost;
+var intervalUser;
 var chat = {};
+var room = {};
 var user = {};
 var util = {};
 var offset = 10;
@@ -38,6 +48,10 @@ chat.successWrite = function(data){
 
 chat.successLoad = function(data){
 	 // console.log(data);
+	 if(data == 'false-room'){
+	 	alert('Conversation not found');
+	 	clearInterval(interval);
+	 }
 	 if(typeof($(data)[0]) == 'undefined'){
 	 	return;
 	 }
@@ -107,6 +121,10 @@ chat.addLisnters = function(){
 		});
 	}
 
+	$('#pseudo').change(function(){
+		user.initSession();
+	});
+
 	$('#btn-send').click(function(){
 		chat.write();
 	});
@@ -141,16 +159,30 @@ chat.addLisnters = function(){
 			}
 		}
 	});
+
+	$('#btn-new-room').click(function(){
+		room.create();
+		document.getElementById('room-id').select();
+	});
+
+	$('#btn-join-room').click(function(){
+		room.joinRoom();
+	});
+
+	$('#btn-share-room').click(function(){
+		room.shareRoom();
+	});
 }
 
 chat.write = function(){
 	var message = {};
 	message.write = {
 		user:$('#pseudo').val(),
-		msg:$('#message').val()
+		msg:$('#message').val(),
+		room:chat.loadRoom()
 	};
-	Sophwork.AJAX(message, chat.successWrite, "http://splitweb.fr/splitapp/splitchat/ajax.php", 'text');
-	// Sophwork.AJAX(message, chat.successWrite, "http://127.0.0.1/chat/ajax.php", 'text');
+	if(!dev) Sophwork.AJAX(message, chat.successWrite, "http://splitweb.fr/splitapp/splitchat/ajax.php", 'text');
+	else Sophwork.AJAX(message, chat.successWrite, "http://127.0.0.1/chat/ajax.php", 'text');
 	chat.refresh();
 };
 chat.loadFirst = function(){
@@ -158,18 +190,20 @@ chat.loadFirst = function(){
 	message.load = {
 		startLine:10,
 		limit:0,
+		room:chat.loadRoom()
 	};
-	Sophwork.AJAX(message, chat.successLoad, "http://splitweb.fr/splitapp/splitchat/ajax.php", 'text');
-	// Sophwork.AJAX(message, chat.successLoad, "http://127.0.0.1/chat/ajax.php", 'text');
+	if(!dev) Sophwork.AJAX(message, chat.successLoad, "http://splitweb.fr/splitapp/splitchat/ajax.php", 'text');
+	else Sophwork.AJAX(message, chat.successLoad, "http://127.0.0.1/chat/ajax.php", 'text');
 }
 chat.refresh = function(){
 	var message = {};
 	message.read = {
 		startLine:0,
 		limit:0,
+		room:chat.loadRoom()
 	};
-	Sophwork.AJAX(message, chat.successRead, "http://splitweb.fr/splitapp/splitchat/ajax.php", 'text');
-	// Sophwork.AJAX(message, chat.successRead, "http://127.0.0.1/chat/ajax.php", 'text');
+	if(!dev) Sophwork.AJAX(message, chat.successRead, "http://splitweb.fr/splitapp/splitchat/ajax.php", 'text');
+	else Sophwork.AJAX(message, chat.successRead, "http://127.0.0.1/chat/ajax.php", 'text');
 }
 
 chat.lazyLoad = function(offset){
@@ -177,13 +211,14 @@ chat.lazyLoad = function(offset){
 	message.lazy = {
 		startLine:offset,
 		limit:Math.abs(offset-10),
+		room:chat.loadRoom()
 	};
-	Sophwork.AJAX(message, chat.successLazy, "http://splitweb.fr/splitapp/splitchat/ajax.php", 'text');
-	// Sophwork.AJAX(message, chat.successLazy, "http/127.0.0.1/chat/ajax.php", 'text');
+	if(!dev) Sophwork.AJAX(message, chat.successLazy, "http://splitweb.fr/splitapp/splitchat/ajax.php", 'text');
+	else Sophwork.AJAX(message, chat.successLazy, "http://127.0.0.1/chat/ajax.php", 'text');
 };
 
 chat.setInterval = function(){
-	interval = setInterval(chat.refresh, 5000);
+	return setInterval(chat.refresh, 5000);
 }
 
 
@@ -194,11 +229,106 @@ chat.exit = function(){
 	gui.App.quit();
 };
 
+chat.loadRoom = function(){
+    var re = /#(.*)/; 
+    var str = window.location.href;
+    var m;
+     
+    if ((m = re.exec(str)) !== null) {
+        if (m.index === re.lastIndex) {
+            re.lastIndex++;
+        }
+        return m[1];
+    }
+    else{
+    	return 'db';
+    }
+};
+
+chat.clearChat = function(){
+	$('#messages').html('');
+};
+
+/**
+ * Room class
+ */
+room.create = function(){
+	console.info('create a new room');
+	user.initSession();
+	var roomId = util.guid();
+	// console.log(roomId);
+	
+	chat.clearChat();
+	var stateObj = { foo: "bar" };
+	history.pushState(stateObj, "room", "#" + roomId);
+	var message = {};
+	message.room = {
+		roomId:roomId
+	};
+	if(!dev) Sophwork.AJAX(message, chat.successLazy, "http://splitweb.fr/splitapp/splitchat/ajax.php", 'text');
+	else Sophwork.AJAX(message, function(data){
+		if(data == 'true'){
+			var session = util.getSession();
+			session.room = roomId;
+			// console.log(session.room);
+		}
+	}, "http://127.0.0.1/chat/ajax.php", 'text');
+	$('.invite').toggle(true);
+	$('#room-id').val('#' + roomId);
+	intervalUser = chat.setInterval(room.listen);
+}
+
+room.listen = function(){
+	var message = {};
+	message.users = {
+		user:user.getUser(),
+	};
+	if(!dev) Sophwork.AJAX(message, chat.successLazy, "http://splitweb.fr/splitapp/splitchat/ajax.php", 'text');
+	else Sophwork.AJAX(message, chat.successLazy, "http://127.0.0.1/chat/ajax.php", 'text');
+}
+
+room.getRoom = function(){
+	var session = util.getSession();
+	return session.room;
+};
+
+room.pastRoom = function(){
+	if(room.getRoom() != chat.loadRoom()){
+		var stateObj = { foo: "bar" };
+		history.pushState(stateObj, "room", "#" + room.getRoom());
+		chat.clearChat();
+		window.location.reload();
+	}
+};
+
+room.joinRoom = function(){
+	var roomId = prompt("Enter the room ID");
+	if(!roomId)return;
+	var stateObj = { foo: "bar" };
+	history.pushState(stateObj, "room", roomId);
+	chat.clearChat();
+	window.location.reload();
+}
+
+room.shareRoom = function(){
+	$('.invite').toggle(true);
+	$('#room-id').val('#' + room.getRoom());
+	document.getElementById('room-id').select();
+	setTimeout(function(){ $('.invite').toggle(false); }, 10000);
+};
+
+
+/**
+ * User class
+ *
+ */
 user.initSession = function(){
 	window.localStorage =  {};
 	var session = window.localStorage;
-	if(session.length == 0)
+	if(session.length < 3){
 		session.user = $('#pseudo').val();
+	}
+	session.room = chat.loadRoom();
 }
 
 user.connectedAs = function(){
@@ -272,6 +402,7 @@ chat.notifyGrant = function(){
 			}
 		});
 	}
+	return false;
 };
 
 util.isNodeWebkit = function(){
@@ -288,4 +419,18 @@ util.isNodeWebkit = function(){
 	  }
 	}
 	return isNodeWebkit;
+};
+
+util.guid = function() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
+};
+
+util.getSession = function(){
+	return window.localStorage;
 };

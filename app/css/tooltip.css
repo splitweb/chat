@@ -1,0 +1,32 @@
+.tooltip{
+	/*display: none;*/
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -180px;
+	max-width: 150px;
+	width: 150px;
+	word-wrap: break-word;
+	white-space: normal;
+	color:#09c;
+	background:rgba(0,0,0,.9);
+	padding:15px;
+	border-radius:3px;
+	box-shadow:0 0 2px rgba(0,0,0,.5);
+	transform:scale(0) rotate(-12deg);
+	opacity:0;
+	transition:all .25s;
+	z-index: 15;
+}
+
+.tool-content:hover{
+     background:rgba(0,0,0,.4);
+     box-shadow:0 1px 0 rgba(255,255,255,.4);
+}
+
+.tool-content:hover .tooltip{
+	transform:scale(1) rotate(0);
+	opacity:1;
+	transition:all .25s;
+	/*opacity: 0;*/
+}
