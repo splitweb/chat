@@ -172,6 +172,23 @@ chat.addLisnters = function(){
 	$('#btn-share-room').click(function(){
 		room.shareRoom();
 	});
+
+	$('#burger').click(function(e){
+		$('.right-panel').toggle();
+		$('.right-panel').addClass('animated bounceInRight');
+		console.log($('.right-panel').css('display'));
+		if($('.right-panel').css('display') == "block"){
+			$('#burger').animate({
+				right: "195px",
+			}, 700 );
+		}
+		else{
+			$('#burger').animate({
+				right: "0px",
+			}, 700 );
+		}
+		e.stopPropagation();
+	});
 }
 
 chat.write = function(){
@@ -276,6 +293,7 @@ room.create = function(){
 	$('.invite').toggle(true);
 	$('#room-id').val('#' + roomId);
 	intervalUser = chat.setInterval(room.listen);
+	setTimeout(function(){ $('.invite').toggle(false); }, 10000);
 }
 
 room.listen = function(){
@@ -292,12 +310,12 @@ room.getRoom = function(){
 	return session.room;
 };
 
-room.pastRoom = function(){
+room.pastRoom = function(){ //fixme reopen last conf
 	if(room.getRoom() != chat.loadRoom()){
-		var stateObj = { foo: "bar" };
-		history.pushState(stateObj, "room", "#" + room.getRoom());
-		chat.clearChat();
-		window.location.reload();
+		// var stateObj = { foo: "bar" };
+		// history.pushState(stateObj, "room", "#" + room.getRoom());
+		// chat.clearChat();
+		// window.location.reload();
 	}
 };
 
@@ -375,10 +393,10 @@ chat.notify = function(data){
 			myAud.play();
 			setTimeout(function() {notification.close();}, 10000);
 		}
-		if(util.isNodeWebkit()){
+		// if(util.isNodeWebkit()){
 			myAud=document.getElementById("notify");
 			myAud.play();
-		}
+		// }
 	}
 };
 

@@ -167,3 +167,55 @@ textarea{
 }
 #room-id{
 }
+
+#burger{
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-weight: bold;
+	font-size: 2.5em;
+	background: #272822;
+	padding: 5px;
+	width: 1em;
+	height: 1em;
+	line-height: 1em;
+	text-align: center;
+	opacity: 0.7;
+	z-index: 999;
+	display: none;
+}
+#burger:active{
+	color: #fff;
+	opacity: 1;
+}
+
+@media (max-width: 48em) {
+	body{
+		
+	}
+	.grid-3_4{
+		width: 100%!important;
+		height: 100%!important;
+	}
+	#chat{
+		height: 100%;
+	}
+	.content{
+		max-height: 94%!important;
+	}
+	.right-panel{
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 55%!important;
+		background: #272822;
+		display: none;
+	}
+	#btn-send{
+		bottom: 1px;
+	}
+
+	#burger{
+		display: block;
+	}
+}
