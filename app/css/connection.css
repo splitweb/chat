@@ -1,0 +1,65 @@
+.connect{
+	width: 25%;
+	margin: auto;
+	box-sizing: content-box;
+	position: relative;
+	top: 25%;
+}
+
+.right-panel{
+	height: 100%;
+	line-height: 100%;
+	vertical-align: middle;
+}
+
+.avatar{
+	width: 35%;
+	margin: auto;
+}
+
+.avatar img{
+	margin: 0 auto;
+	border-radius: 100%;
+	width: 100%;
+	border: inset medium #eee;
+}
+
+.connection{
+	margin-top: 1em;
+	width: 100%;
+}
+
+#pseudo{
+	margin-top: 1em;
+}
+
+.header-bar{
+	height: 2em;
+	line-height: 2em;
+	text-align: center;
+	vertical-align: middle;
+	background-color: rgb(0, 120, 231);
+	color: #fff;
+	-webkit-box-shadow: 0 1px 2px 0 #000;
+	box-shadow: 0 1px 2px 0 #000;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.node-button{
+	position: absolute;
+	bottom: 0;
+}
+
+@media (max-width: 48em) {
+	.connect{
+		width: 90%;
+	}
+}

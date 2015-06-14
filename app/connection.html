@@ -4,8 +4,9 @@
 	<meta charset="UTF-8">
 	<title>MyChat</title>
 	<meta name="description" content="My description">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<link rel="stylesheet" type="text/css" href="css/tooltip.css">
+	<link rel="stylesheet" type="text/css" href="css/connection.css">
 	<link rel="stylesheet" type="text/css" href="css/base/base.css">
 	<link rel="stylesheet" type="text/css" href="css/grids/grids.css">
 	<link rel="stylesheet" type="text/css" href="css/buttons/buttons-core.css">
@@ -13,17 +14,30 @@
 	<link rel="stylesheet" type="text/css" href="css/forms/forms.css">
 	<link rel="stylesheet" type="text/css" href="css/animate.css">
 </head>
-<body>
+<body class="noselect">
 	<div class="line header-bar" style="-webkit-app-region: drag">Split Chat</div>
 	<div class="grid-4_4 pinnackl-form right-panel">
-		<input id="pseudo" class="pinnackl-input" value="" require placeholder="Your pseudo">
-		<button id="btn-new-room" class="pinnackl-button tool-content">&#43;<span class="tooltip">Create a new room</span></button>
-		<button id="btn-minimize" class="pinnackl-button pinnackl-button-secondary tool-content">Minimize<span class="tooltip">Minimize window</span></button>
-		<button id="btn-close" class="pinnackl-button pinnackl-button-error tool-content">Close<span class="tooltip">Close window</span></button>
-		<audio id="notify" src="audio/notify.mp3" preload="auto"></audio>
+		<div class="connect animated bounceInLeft">
+			<form id="connection">
+				<div class="avatar">
+					<img src="img/unknown.jpg">
+				</div>
+				<input id="pseudo" class="pinnackl-input-1" value="" require placeholder="Your pseudo">
+				<button id="connection" class="pinnackl-button pinnackl-button-primary connection">Validate</button>
+			</form>
+		</div>
+		<div class="node-button">
+			<button id="btn-minimize" class="pinnackl-button pinnackl-button-secondary tool-content">Minimize
+				<span class="tooltip">Minimize window</span>
+			</button>
+			<button id="btn-close" class="pinnackl-button pinnackl-button-error tool-content">Close
+				<span class="tooltip">Close window</span>
+			</button>
+		</div>
 	</div>
 	<script src="js/libs/sophwork.js"></script>
 	<script src="js/libs/jquery-1.11.0.min.js"></script>
-	<!-- // <script src="js/app.js"></script> -->
+	<script src="js/lib.js"></script>
+	<script src="js/connection.js"></script>
 </body>
 </html>

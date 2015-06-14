@@ -27,8 +27,8 @@ body{
 }
 
 .content{
-	min-height: 400px;
-	max-height: 400px;
+	height: 94%!important;
+	/*max-height: 400px;*/
 	width: 400px;
 	overflow-y: scroll;
 	background:#fff;
@@ -50,7 +50,9 @@ body{
 .post:last-child{
 	margin-bottom: 6px;
 }
-
+.post p{
+	color: #eee;
+}
 
 .date{
 	font-size: .6em;
@@ -62,8 +64,9 @@ body{
 }
 
 .pseudo{
-	color: #1e90ff;
+	color: #fff;
 	font-weight: bold;
+	text-decoration: underline;
 }
 .pseudo:after{
 	content: " dit ";
@@ -82,19 +85,28 @@ body{
 /*extend pinnackl css*/
 textarea{
 	border-radius: 0 0 4px 4px !important;
-	min-height: 35px !important;
+	min-height: 36px !important;
 	max-height: 128px !important;
-	height: 35px;
+	height: 36px;
 	width: 100%;
 	max-width: 100%;
+	padding-right: 80px!important;
 }
 
+.left-panel{
+	height: 95%;
+	margin-bottom: 5%;
+
+}
 #chat{
 	position: relative;
+	height: 89%;
 }
 #btn-send{
 	position: absolute;
 	right: 0;
+	bottom: -3px;
+	z-index: 100;
 }
 
 #btn-close{
@@ -139,6 +151,7 @@ textarea{
 }
 
 .send-option{
+	margin-top: 6px;
 	margin-left: 6px;
 }
 
@@ -188,14 +201,16 @@ textarea{
 	color: #fff;
 	opacity: 1;
 }
-
+#quit{
+	margin: .5em;
+}
 @media (max-width: 48em) {
 	body{
 		
 	}
 	.grid-3_4{
 		width: 100%!important;
-		height: 100%!important;
+		height: 95%!important;
 	}
 	#chat{
 		height: 100%;
@@ -212,7 +227,7 @@ textarea{
 		display: none;
 	}
 	#btn-send{
-		bottom: 1px;
+		/*bottom: 1px;*/
 	}
 
 	#burger{
