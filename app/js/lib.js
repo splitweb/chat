@@ -344,6 +344,7 @@ user.startSession = function(){
 		window.localStorage = {};
 		window.localStorage.user = null;
 		window.localStorage.room = "#db";
+		window.location = 'connection.html';
 	}
 };
 
